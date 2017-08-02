@@ -104,10 +104,10 @@ On the `.../commandOut` topic, the mower will publish data as UTF-8 encoded JSON
     "mac": "AABBCCDDEEFF", // MAC address of the mower
     "fw": 2.59, // Firmeware version
     "bt": {  
-      "t": 29.0,
-      "v": 19.79,
-      "p": 87,
-      "nr": 622,
+      "t": 29.0, // Battery temperature
+      "v": 19.79, // Battery voltage
+      "p": 87, // Battery load percentage
+      "nr": 622, // Battery charged times
       "c": 0 // Charging, 1 = yes, 0 = no
     },
     "dmp": [0.4, -2.5, 14.3],
@@ -119,8 +119,19 @@ On the `.../commandOut` topic, the mower will publish data as UTF-8 encoded JSON
     "ls": 1, // Status code
     "le": 0, // Error code
     "lz": 0,
-    "rsi": 52,
+    "rsi": 52, // perimeter location
     "lk": 0
   }
 }
 ```
+
+Send commands to MQTT `DB510/MAC_ADDRESS/commandIn`
+
+{"cmd":0} // refresh / status update
+{"cmd":1} // start mowing // start mowing from station
+{"cmd":2} // Manual stop
+{"cmd":3} // Back to home
+{"cmd":4} // start mowing // following wire and start mowing
+{"cmd":5} // lock
+{"cmd":6} // unlock
+{"cmd":7} // Reset log
